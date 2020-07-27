@@ -1,0 +1,6 @@
+werkzeug==0.14.1  # because https://github.com/pallets/flask/issues/3148
+flask==0.12.4   # because https://flask-sqlalchemy.palletsprojects.com/en/2.x/#requirements
+flask-restplus==0.12.1
+flask-appconfig
+requests
+aerospike

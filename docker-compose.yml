@@ -1,0 +1,31 @@
+version: '3.5'
+services:
+  micro-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 5080:5080
+    environment:
+      AEROSPIKE_HOST: aerospike
+      AEROSPIKE_PORT: 3000
+      APP_PORT: 5080
+    volumes:
+      - ./:/code
+    restart: always
+    networks:
+      - app_net
+  aerospike:
+    image: aerospike/aerospike-server
+    ports:
+      - 127.0.0.1:3000:3000
+      - 127.0.0.1:3001:3001
+      - 127.0.0.1:3002:3002
+      - 127.0.0.1:3003:3003
+    environment:
+      NAMESPACE: test
+    networks:
+      - app_net
+networks:
+  app_net:
+    internal: false
