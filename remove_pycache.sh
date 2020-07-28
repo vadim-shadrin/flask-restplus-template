@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/usr/bin/env bash
+set -e
 
-# without this commands docker-compose don't rebuild container if tests were used
-sudo rm -rf tests/__pycache__
-sudo rm -rf tests/functional/__pycache__
-sudo rm -rf tests/integration/api/__pycache__
-sudo rm -rf tests/unit/__pycache__
+echo "Removing venv subdirectory"
+rm -rf venv
 
-# this commands just delete pycache
-sudo rm -rf mb_api/__pycache__
-sudo rm -rf mb_api/api/__pycache__
-sudo rm -rf mb_api/api/namespaces/__pycache__
-sudo rm -rf mb_api/oauth/__pycache__
+echo "Removing .pytest_cache subdirectory"
+rm -rf **/*/.pytest_cache
+
+echo "removing __pycache__ subdirectories"
+for file in $(find ./ -name __pycache__); do
+    rm -r $file;
+done
