@@ -1,9 +1,10 @@
 from flask_restplus import Resource, Namespace, reqparse
 from flask import request
-api = Namespace('users', description='Users')
-from service.api.repo.user import User
+from sevice.api.repo.user import User
+
 import requests
 
+api = Namespace('users', description='Users')
 
 @api.route('/online')
 class Online(Resource):
@@ -11,7 +12,7 @@ class Online(Resource):
     def get(self):
         user_id = request.args.get('user_id')
         user = User().user_online(user_id)
-        return {"user": user},200
+        return {"user": user}, 200
 
 @api.route('/is_online')
 class isOnline(Resource):
@@ -19,4 +20,4 @@ class isOnline(Resource):
     def get(self):
         user_id = request.args.get('user_id')
         user = User().is_user_online(user_id)
-        return {"user": user},200
+        return {"user": user}, 200
