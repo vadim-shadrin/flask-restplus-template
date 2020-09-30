@@ -15,6 +15,13 @@ class Config(RestplusConfig):
     DEBUG = True  # Do not use debug mode in production
     FLASK_DEBUG_DISABLE_STRICT = True
     SECRET_KEY = 'devkey'
+    AEROSPIKE_CONFIG = { 
+        'hosts': [
+            (os.getenv('AEROSPIKE_HOST'), int(os.getenv('AEROSPIKE_PORT')))
+        ],
+        'policies': { 'timeout': 1000 },
+    }
+
     # ES_SERVER = {'url': os.environ.get('ELASTIC_URL', 'http://elastic.beta.seomator.com'),
     #              'port': os.environ.get('ELASTIC_PORT', 80),
     #              'timeout': os.environ.get('ELASTIC_TIMEOUT', 120),

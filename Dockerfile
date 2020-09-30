@@ -20,5 +20,5 @@ EXPOSE 5080
 
 COPY . /code
 
-CMD ["python", "service/app.py"]
+CMD ["python", "service/main.py"]
 #CMD ["uwsgi", "uwsgi.ini"]
